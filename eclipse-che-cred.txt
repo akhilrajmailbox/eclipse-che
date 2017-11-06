@@ -1,0 +1,16 @@
+
+admin configuration user >>
+
+username : admin
+password : admin
+
+
+authentication and user management web-ui :
+http://ip-address:5050/auth/admin
+
+eclipse che web-ui :
+http://ip-address:8080
+
+
+
+

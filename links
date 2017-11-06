@@ -1,0 +1,34 @@
+eclipse che installation and configuratiojn >>
+
+https://www.youtube.com/watch?v=Q_x9h7zhsGQ
+https://www.eclipse.org/che/docs/setup/getting-started/
+
+managing >>
+https://www.eclipse.org/che/docs/setup/managing/index.html
+
+admin guide >>
+https://codenvy.com/docs/admin-guide/cli/index.html
+
+
+multi-user configuration >>
+http://<<HOST_IP>>:8080/docs/setup/getting-started-multi-user/index.html
+
+
+LDAP configuration >>
+login to the server url :: http://192.168.1.248:5050/auth/admin
+then configure with this url ::
+http://www.keycloak.org/docs/latest/server_admin/topics/user-federation.html
+
+organization configuration >>
+login to admin >> admin
+change the password for admin
+create organisation 
+
+
+organization configuration ::
+https://www.eclipse.org/che/docs/user-management/organizations/index.html
+
+
+project configuration >>
+https://www.eclipse.org/che/docs/ide/git-svn/index.html
+https://www.youtube.com/watch?v=efCALeYVNk4&feature=youtu.be

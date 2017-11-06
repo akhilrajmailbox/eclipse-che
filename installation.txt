@@ -1,0 +1,90 @@
+
+## install docker
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install nano openssh-server openssh-client
+lsb_release -a
+
+sudo apt-get install     apt-transport-https     ca-certificates     curl     software-properties-common
+
+sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable"
+
+sudo apt-get update
+sudo apt-get install docker-ce
+
+usermod -aG docker username
+id username
+
+
+## install java 8
+apt-get update
+echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+apt-get install -y python-software-properties software-properties-common
+add-apt-repository -y ppa:webupd8team/java
+apt-get -y update
+apt-get install -y nano wget unzip locate oracle-java8-installer
+update-java-alternatives --set java-8-oracle
+apt-get install oracle-java8-set-default
+apt-get install oracle-java8-set-default
+nano /etc/profile
+apt-get install -y nano wget unzip locate oracle-java8-installer
+echo $JAVA_HOME
+nano /etc/profile
+echo $JAVA_HOME
+
+
+
+## install eclipse che
+docker run -it -e CHE_MULTIUSER=true -e CHE_HOST=192.168.1.248 -v /var/run/docker.sock:/var/run/docker.sock -v /registry/che:/data eclipse/che start
+
+
+## user configuratiopn and LDAP configuration
+http://192.168.1.248:5050/auth/admin
+
+User Federation >> Ldap >> edit
+
+
+Edit Mode				:	READ_ONLY
+Sync Registrations		:	off
+Vendor					:	other
+Username LDAP attribute	:	uid
+RDN LDAP attribute		:	cn
+UUID LDAP attribute		:	uid
+User Object Classes		:	......
+Connection URL			:	ldap://ip-address:port
+Users DN				:	ou=users,dc=ldap,dc=example,dc=com
+Authentication Type		:	simple
+Bind DN					:	cn=user_ro,ou=users,dc=ldap,dc=example,dc=com
+Bind Credential			:	secret
+
+
+
+
+
+
+
+
+## some commands >>
+
+# Stop Che
+docker run <DOCKER_OPTIONS> eclipse/che stop
+
+# Restart Che
+docker run <DOCKER_OPTIONS> eclipse/che restart
+
+# if change the password for admin 
+docker run <DOCKER_OPTIONS> eclipse/che restart --user admin --password 'dsbfjkd$kfcQ'
+
+# Run a specific version of Che
+docker run <DOCKER_OPTIONS> eclipse/che:<version> start
+
+# Get help
+docker run eclipse/che
+
+# If boot2docker on Windows, mount a subdir of `%userprofile%` to `:/data`. For example:
+docker run <DOCKER_OPTIONS> -v /c/Users/tyler/che:/data eclipse/che start
+
+# If Che will be accessed from other machines add your server's external IP
+docker run <DOCKER_OPTIONS> -e CHE_HOST=<your-ip> eclipse/che start
+
+
