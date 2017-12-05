@@ -1,0 +1,8 @@
+FROM <<img-name>>
+RUN useradd  --password <<password>> --shell /bin/bash --create-home <<username>>
+RUN sh -c 'echo "<<username>>:<<password>>" | chpasswd'
+RUN usermod -aG sudo <<username>>
+RUN sh -c 'echo "<<username>> ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
+USER <<username>>
+WORKDIR /projects
+CMD tail -f /dev/null

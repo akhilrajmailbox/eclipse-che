@@ -37,8 +37,8 @@ echo $JAVA_HOME
 ## install eclipse che
 docker run -it -e CHE_MULTIUSER=true -e CHE_HOST=192.168.1.248 -v /var/run/docker.sock:/var/run/docker.sock -v /registry/che:/data eclipse/che start
 
-# for using other port ::
-docker run -it -e CHE_MULTIUSER=true -e CHE_PORT=88 -v /var/run/docker.sock:/var/run/docker.sock -v /registry/che:/data eclipse/che start
+for using other port ::
+docker run -it -e CHE_MULTIUSER=true -e CHE_PORT=88 -v /var/run/docker.sock:/var/run/docker.sock -v /registry-vol/che:/data eclipse/che start
 
 
 ## user configuratiopn and LDAP configuration

@@ -1,0 +1,90 @@
+==========================================================================================================
+action options 
+==========================================================================================================
+
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /registry/data:/data -v /registry/sync:/sync {eclipse/che,codenvy/cli} action  --url http://ip_address --user username --password 'sdgbvxdfgser' --unison-verbose 
+
+create-start-workspace
+  Parameters:               
+    [-s,--url]=<value>      Defines the url to be used
+    [-q,--quiet]            Run in quiet mode for this test.
+    [-u,--user]=<value>     Defines the user to be used
+    [-w,--password]=<value> Defines the password to be used
+add-user
+  Parameters:               
+    [-s,--url]=<value>      Defines the url to be used
+    [-u,--user]=<value>     Defines the user to be used
+    [-w,--password]=<value> Defines the password to be used
+    [-a,--admin]            Grant admin role to the user
+  Arguments:                
+    <userToAdd>             Name of the user to create
+    <emailToAdd>            Email of the user to create
+    <passwordToAdd>         Password of the user to create 
+remove-user
+  Parameters:               
+    [-s,--url]=<value>      Defines the url to be used
+    [-u,--user]=<value>     Defines the user to be used
+    [-w,--password]=<value> Defines the password to be used
+  Arguments:                
+    <usernameToDelete>      name of the user to remove
+execute-command
+  Parameters:               
+    [-s,--url]=<value>      Defines the url to be used
+    [-u,--user]=<value>     Defines the user to be used
+    [-w,--password]=<value> Defines the password to be used
+  Arguments:                
+    <workspaceName>         Defines the workspace to be used
+list-workspaces
+  Parameters:                     
+    [-s,--url]=<value>            Defines the url to be used
+    [-u,--user]=<value>           Defines the user to be used
+    [-w,--password]=<value>       Defines the password to be used
+    [--formatter]=<value>         Defines the formatter of result
+    [--formatter-skip-titles]     Don't display titles in the output
+    [--formatter-columns]=<value> Specify order and column names that will be displayed
+workspace-ssh
+  Parameters:               
+    [-s,--url]=<value>      Defines the url to be used
+    [-u,--user]=<value>     Defines the user to be used
+    [-w,--password]=<value> Defines the password to be used
+  Arguments:                
+    <workspaceName>         Defines the workspace to be used. use workspaceId, workspaceName or namespace:workspaceName as argument
+get-ssh-data
+  Parameters:               
+    [-s,--url]=<value>      Defines the url to be used
+    [-u,--user]=<value>     Defines the user to be used
+    [-w,--password]=<value> Defines the password to be used
+  Arguments:                
+    <workspaceName>         Defines the workspace to be used. use workspaceId or :workspaceName as argument
+graceful-stop
+  Parameters:               
+    [-s,--url]=<value>      Defines the url to be used
+    [-u,--user]=<value>     Defines the user to be used
+    [-w,--password]=<value> Defines the password to be used
+
+==========================================================================================================
+
+==========================================================================================================
+
+
+create custom stacks for sync ::
+
+
+FROM <<img-name>>
+RUN useradd  --password <<password>> --shell /bin/bash --create-home <<username>>
+RUN sh -c 'echo "<<username>>:<<password>>" | chpasswd'
+RUN usermod -aG sudo <<username>>
+RUN sh -c 'echo "<<username>> ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
+USER <<username>>
+WORKDIR /projects
+CMD tail -f /dev/null
+
+
+
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/akhil/Desktop/codenvy-data/data:/data -v /home/akhil/Desktop/codenvy-data/sync:/sync codenvy/cli sync <<workspace-id>> --url http://<<codenvy-server-url>> --user username --password 'dfgbdfbn drg'
+
+==========================================================================================================
+
+==========================================================================================================
+
+
