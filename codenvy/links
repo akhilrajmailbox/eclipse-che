@@ -11,9 +11,15 @@ codenvy reference >>
 https://codenvy.com/docs/
 https://codenvy.com/docs/admin-guide/cli/index.html
 
+
+stacks recipe >>
+https://codenvy.com/docs/getting-started/runtime-recipes/index.html
+
+
 factory creation >>
 http://ws.vivasa.in/docs/factory/json-reference/index.html
 https://github.com/eclipse/che-docs/blob/master/src/main/_docs/factory-portable-workspaces/factory-creating.md
 
 ref ::
 https://codenvy.com/docs-version/5.0.1/docs/integration-guide/workspace-automation/index.html
+

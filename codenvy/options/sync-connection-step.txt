@@ -3,7 +3,7 @@ Steps for Sync tghe codenvy workspace projects with local Systems
 
 step 1)
 
-docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /path/to/folder/data:/data -v /path/to/folder/sync:/sync codenvy/cli action list-workspaces --url http://codenvy-server-ip --user <<username>> --password '<<password>>'
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /path/to/folder/data:/data -v /path/to/folder/sync:/sync codenvy/cli action list-workspaces --url http://ws.vivasa.in --user <<username>> --password '<<password>>'
 
 
 take the workspace ID for the workspace for sync with local system
@@ -11,9 +11,6 @@ take the workspace ID for the workspace for sync with local system
 
 step 2)
 
-docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/akhil/Desktop/codenvy-data/data:/data -v /home/akhil/Desktop/codenvy-data/sync:/sync codenvy/cli sync <<workspace-id>> --url http://codenvy-server-ip --user <<username>> --password '<<password>>'
-
-
-
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/akhil/Desktop/codenvy-data/data:/data -v /home/akhil/Desktop/codenvy-data/sync:/sync codenvy/cli sync <<workspace-id>> --url http://ws.vivasa.in --user <<username>> --password '<<password>>'
 
 

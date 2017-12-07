@@ -80,6 +80,18 @@ WORKDIR /projects
 CMD tail -f /dev/null
 
 
+# for sync
+
+FROM <<img-name>>
+RUN sh -c 'echo "root:passwd" | chpasswd'
+RUN sed -i "s|PermitRootLogin prohibit-password|PermitRootLogin yes|g" /etc/ssh/sshd_config
+EXPOSE 22
+WORKDIR /projects
+CMD tail -f /dev/null
+
+
+
+
 
 docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/akhil/Desktop/codenvy-data/data:/data -v /home/akhil/Desktop/codenvy-data/sync:/sync codenvy/cli sync <<workspace-id>> --url http://<<codenvy-server-url>> --user username --password 'dfgbdfbn drg'
 
