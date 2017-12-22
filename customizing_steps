@@ -1,0 +1,99 @@
+pre-configuration
+===========================================================
+
+install and configure maven
+
+sudo apt-get install -y maven
+mkdir ~/.m2
+
+cp /usr/share/maven/conf/settings.xml ~/.m2
+
+
+===========================================================
+step 1)
+git clone https://github.com/eclipse/che.git
+
+
+===========================================================
+step 2)
+checkout the branch
+
+eg :: git checkout tags/5.22.0
+
+
+===========================================================
+step 3)
+build >>
+
+1) assembly build
+
+
+docker run -it --rm --name build-che \
+           -v "$HOME/.m2:/home/user/.m2" \
+           -v "$HOME/che:/home/user/che-build" \
+           -v /var/run/docker.sock:/var/run/docker.sock \
+           -w /home/user/che-build/assembly/assembly-main eclipse/che-dev \
+           mvn clean install
+
+======================
+
+2) Che and all submodules build
+
+docker run -it --rm --name build-che \
+           -v "$HOME/.m2:/home/user/.m2" \
+           -v "$HOME/che:/home/user/che-build" \
+           -v /var/run/docker.sock:/var/run/docker.sock \
+           -w /home/user/che-build eclipse/che-dev \
+           mvn -DskipTests=true \
+               -Dfindbugs.skip=true \
+               -Dgwt.compiler.localWorkers=2 -T 1C \
+               -Dmdep.analyze.skip=true \
+               -Dlicense.skip=true \
+               -Pnative \
+               clean install
+
+======================
+
+3) build the core
+
+docker run -it --rm --name build-che \
+           -v "$HOME/.m2:/home/user/.m2" \
+           -v "$HOME/che:/home/user/che-build" \
+           -v /var/run/docker.sock:/var/run/docker.sock \
+           -w /home/user/che-build/core eclipse/che-dev \
+           mvn -DskipTests=true -Dfindbugs.skip=true clean install
+
+======================
+
+4) build plugins
+
+docker run -it --rm --name build-che \
+           -v "$HOME/.m2:/home/user/.m2" \
+           -v "$HOME/che:/home/user/che-build" \
+           -v /var/run/docker.sock:/var/run/docker.sock \
+           -w /home/user/che-build/plugins eclipse/che-dev \
+           mvn clean install
+
+======================
+
+5) build the user dashboard
+
+cd /che/dashboard
+mvn clean install
+
+
+===========================================================
+step 4)
+docker run -it  -e CHE_MULTIUSER=true -e CHE_PORT=88 \
+                            -v "$HOME/che:/repo" \
+                            -v "$HOME/che-data:/data" \
+                            -v /var/run/docker.sock:/var/run/docker.sock \
+                            eclipse/che start
+
+===========================================================
+links ::
+builng commands >>
+https://github.com/eclipse/che/wiki/Development-Workflow
+
+reference >>
+https://www.eclipse.org/che/docs/setup/cli/index.html
