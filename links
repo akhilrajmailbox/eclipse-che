@@ -37,6 +37,12 @@ project configuration >>
 https://www.eclipse.org/che/docs/ide/git-svn/index.html
 https://www.youtube.com/watch?v=efCALeYVNk4&feature=youtu.be
 
+stacks recipe >>
+https://codenvy.com/docs/getting-started/runtime-recipes/index.html
+
+for aliases need top run in custom commands :: 
+BASH_ENV=~/dotfiles/bash/aliases.sh bash -O expand_aliases -c "commands"
+
 
 customisation >>
 builng commands >>
